@@ -1,0 +1,24 @@
+- name: Provision Stack
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  vars:
+    stack_name: demopoc2
+    stack_app: docker2
+    aws_region: us-east-2
+  vars_files:
+    - "keys/private/aws_private.yml"
+  tasks:
+    - name: tear down old demopoc deployment
+      cloudformation:
+        stack_name: "{{stack_name}}-{{stack_app}}"
+        state: "absent"
+        region: "{{ aws_region }}"
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+    - file: path=roles/distrostack/files/*.yml state=absent
+    - name: definition of ipaddress
+      lineinfile:
+        path: "roles/dockercompose/defaults/main.yml"
+        regexp: '^publicip:'
+        line: "publicip: 1.1.1.1"

@@ -1,0 +1,15 @@
+
+- name: Create wordpress compose directory
+  command: mkdir /home/ec2-user/wordpress
+
+- name: Create wordpress compose file
+  template: src=roles/dockercompose/templates/wordpress-compose.yml.j2 dest=/home/ec2-user/wordpress/wordpress-compose.yml
+
+- name: Run Docker-compose
+  command: sudo /usr/local/bin/docker-compose -f /home/ec2-user/wordpress/wordpress-compose.yml up -d
+  #shell: ssh {{ publicip }} /usr/local/bin/docker-compose -f /home/ec2-user/wordpress/wordpress-compose.yml up -d
+  #args:
+  #  executable: /bin/bash
+
+  #command: DOCKER_HOST=""/usr/local/bin/docker-compose -f /home/ec2-user/wordpress/wordpress-compose.yml up -d
+  #command: ssh -i keys/private/RINO_OHIO.pem ec2-user@18.218.43.99 /usr/local/bin/docker-compose -f /home/ec2-user/wordpress/wordpress-compose.yml up -d

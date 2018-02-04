@@ -1,0 +1,6 @@
+
+- name: Make sure docker is running
+  become: True
+  become_user: root
+  systemd: state=restarted name=docker enabled=true
+  when: with_tools == True

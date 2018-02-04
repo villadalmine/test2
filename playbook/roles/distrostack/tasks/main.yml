@@ -1,0 +1,5 @@
+---
+# tasks file for demopoc
+
+- name : Deploying AWS structure with CloudFormation creating from scratch all network
+  include: cloudformation.yml

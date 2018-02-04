@@ -1,0 +1,6 @@
+# Pem files and keys
+*.pem
+playbook/keys/public/villadalmine.pub
+playbook/keys/private/aws_private.yml
+roles/distrostack/files/demopoc.yml
+

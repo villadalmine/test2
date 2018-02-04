@@ -1,0 +1,3 @@
+- name: configure sshcfg file
+  template: src=roles/base/templates/ssh.cfg.j2 dest="{{sshcfgpath}}"
+  tags: sshcfg

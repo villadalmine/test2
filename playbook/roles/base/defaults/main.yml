@@ -1,0 +1,10 @@
+---
+package_manager: yum
+tools_install:
+  - docker
+  - mc
+  - git
+with_tools: True
+passwordless_sudo: True
+packager_enabled: True
+user: ec2-user

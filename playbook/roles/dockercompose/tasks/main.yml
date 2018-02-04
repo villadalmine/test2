@@ -1,0 +1,2 @@
+- include: "roles/dockercompose/tasks/wordpress.yml"
+  when: "{{ wordpressdbdeploy }}"

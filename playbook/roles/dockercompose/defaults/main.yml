@@ -1,0 +1,5 @@
+---
+wordpressdbdeploy: True
+publicip: 18.218.196.209
+wordpresdbpassword: testing5533
+mysqlrootpassword: testing5533

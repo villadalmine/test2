@@ -1,0 +1,29 @@
+
+- name: "OS upgrade"
+  yum: name=* state=latest update_cache=yes
+  become: True
+  become_user: root
+  when: packager_enabled == True
+- name: Install list of packages
+  become: True
+  become_user: root
+  yum: name={{item}} state=installed
+  with_items: "{{ tools_install }}"
+  when: with_tools == True
+
+- name: Install docker-compose
+  become: True
+  become_user: root
+  command: curl -L https://github.com/docker/compose/releases/download/1.19.0-rc2/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose
+- name: Set permission to docker-compose
+  become: True
+  become_user: root
+  command: chmod ugo+x /usr/local/bin/docker-compose
+
+- name: Update ec2-user to use docker
+  become: True
+  become_user: root
+  user:
+    name: ec2-user
+    groups: docker,wheel
+    append: yes

@@ -1,0 +1,41 @@
+---
+- name: Replacing variables for cloudformation file
+  template: src={{cloudformationFile}} dest=./roles/distrostack/files/demopoc.yml
+- name: Remove ssh.cfg config
+  file: path={{ sshcfgpath }} state=absent
+- name: Run my CloudFormation stack
+  cloudformation:
+    stack_name: "{{stack_name}}-{{stack_app}}"
+    region: "{{ aws_region }}"
+    template: "./roles/distrostack/files/demopoc.yml"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    tags:
+      Name: "{{stack_name}}-{{stack_app}}"
+      environment: testing
+  register: "ec2_awsecs_stack"
+- debug: var="ec2_awsecs_stack.stack_outputs.URL"
+- debug: var="ec2_awsecs_stack.stack_outputs.PublicIP"
+- set_fact:
+    ipaddress: "{{ec2_awsecs_stack.stack_outputs.PublicIP}}"
+- debug: var=ipaddress
+- name: definition of {{ ipaddress }}
+  lineinfile:
+    path: "roles/dockercompose/defaults/main.yml"
+    regexp: '^publicip:'
+    line: "publicip: {{ ipaddress }}"
+
+
+- name: Configuring ssh connection
+  include: "roles/base/tasks/sshcfg.yml"
+- name: Wait for server to restart
+  local_action:
+    module: wait_for
+      host={{ ipaddress }}
+      port=22
+      delay=20
+      timeout=800
+- name: Refresh EC2 cache
+  command: "{{ commandec2 }} --refresh-cache "
+- name: Refresh in-memory EC2 cache
+  meta: refresh_inventory

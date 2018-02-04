@@ -1,0 +1,21 @@
+---
+# defaults values for distrostack
+
+#THis demopoc cloudformation uses 80,22,443
+
+cloudformationFile: demopoc.yml.j2
+stack_name: "demopoc"
+stack_app: "docker"
+demopoc:
+  key: RINO_OHIO
+  ami: ami-710e2414
+  zone: us-east-2
+  cidrblockvpc: 10.0.0.0/16
+  cidrblocksubnet: 10.0.0.0/24
+  kind: t2.micro
+
+commandec2: "./ec2.py"
+aws_region: us-east-2
+aws_secret_key: xxxx
+aws_access_key: xxxas
+user: ec2-user
