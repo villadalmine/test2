@@ -31,7 +31,7 @@ El demo es limitado, no esta totalmente paremetrizado, esta hecho para un ejempl
    * Contiene la variable aws_secret_key , aws_access_key, user,sshcfg, pathkeys.
    * pathkey  indica donde esta la key privada de aws para loguearse a la instancia.
    * sshcfgpath indica la ruta donde graba el ssh.cfg
-   
+
 4. El archivo ec2.ini se puede editar para traer en la busqueda solo las instancias que queremos.
 
 ## Archivo ansible.cfg
@@ -63,4 +63,22 @@ ansible-playbook remove-provision-demo1.yml  -vvv
 ### Ejecutar Playbook
 ```
 ansible-playbook -i ec2.py  aws-provision-demo1.yaml  -vvv
+```
+##Para ver las salidas de los comandos
+Ver el archivo removedemo.out y createdemo1.out
+
+
+#INSTALAR DESDE CERO EN UNA DISTRO BASADA EN FEDORA
+Instalo ANSIBLE
+```
+[root@rosas ~]# dnf install ansible
+Last metadata expiration check: 2:17:13 ago on Sat 03 Feb 2018 08:00:39 PM EST.
+Dependencies resolved.
+```
+
+Me clone le repo.
+
+```
+
+
 ```

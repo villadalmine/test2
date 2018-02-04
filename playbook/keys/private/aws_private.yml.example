@@ -1,8 +1,8 @@
-aws_region: us-west-2
-
-# If you choose to set specifically, ENV variables are usable
+#Para conectar a amazon poner aca las key
 aws_access_key: aws-access-key
 aws_secret_key: aws-secret-key
+#Para hacer andar las key se necesita poner la ruta en donde esta la key de amazon
 pathkeys: "$USER/test2/playbook/keys/private/RINO_OHIO.pem"
-sshcfgpath: "/Users/restaurador/violeta/repos/rino/aws/test2/playbook/ssh.cfg"
+#Se necesita poner la ruta del ssh.cfg en el mismo directorio que el playbook
+sshcfgpath: "$USER/test2/playbook/ssh.cfg"
 user: ec2-user
