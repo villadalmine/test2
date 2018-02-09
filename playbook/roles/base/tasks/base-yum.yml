@@ -4,6 +4,7 @@
   become: True
   become_user: root
   when: packager_enabled == True
+
 - name: Install list of packages
   become: True
   become_user: root
@@ -19,11 +20,3 @@
   become: True
   become_user: root
   command: chmod ugo+x /usr/local/bin/docker-compose
-
-- name: Update user to use docker
-  become: True
-  become_user: root
-  user:
-    name: {{ user }}
-    groups: docker,wheel
-    append: yes

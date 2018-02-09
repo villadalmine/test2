@@ -4,7 +4,7 @@
   gather_facts: False
   vars:
     stack_name: centos
-    stack_app: labb
+    stack_app: lab
     aws_region: us-east-2
   vars_files:
     - "keys/private/aws_private.yml"
