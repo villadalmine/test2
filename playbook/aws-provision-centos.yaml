@@ -24,6 +24,8 @@
     stack_name: "demopoc2"
     stack_app: "docker2"
     user: "centos"
+    packager_enabled: False
+    with_tools: False
   vars_files:
     - "keys/private/{{provisioner}}_private.yml"
   roles:
