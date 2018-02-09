@@ -3,8 +3,8 @@
   connection: local
   gather_facts: False
   vars:
-    stack_name: demopoc2
-    stack_app: docker2
+    stack_name: centos
+    stack_app: labb
     aws_region: us-east-2
   vars_files:
     - "keys/private/aws_private.yml"

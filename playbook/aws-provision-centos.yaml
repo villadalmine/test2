@@ -1,43 +1,30 @@
 #TEST PHASE1 AWS PROVISIONING
 - hosts: localhost
-  name: Provision Stack Aws Demo 2
+  name: Provision Stack Aws Centos
   connection: local
   gather_facts: True
   vars:
     cloudformationFile: demopoc2.yml.j2
     provisioner: aws
-    stack_name: "demopoc2"
-    stack_app: "docker2"
+    stack_name: "centos"
+    stack_app: "lab"
+    user: "centos"
   vars_files:
     - "keys/private/{{provisioner}}_private.yml"
   roles:
     - distrostack
 #TEST PHASE2 APPLYING ROLE BASE
 
-- hosts: tag_Name_demopoc2_docker2
+- hosts: tag_Name_centos_lab
   name: Set up instances
-  user: ec2-user
+  user: centos
   gather_facts: True
   vars:
     provisioner: aws
     stack_name: "demopoc2"
     stack_app: "docker2"
+    user: "centos"
   vars_files:
     - "keys/private/{{provisioner}}_private.yml"
   roles:
     - base
-
-#TEST PHASE3 DEPLOYING WORDPRESS APP
-
-- hosts: tag_Name_demopoc2_docker2
-  name: Set up instances
-  user: ec2-user
-  gather_facts: True
-  vars:
-    provisioner: aws
-    stack_name: "demopoc2"
-    stack_app: "docker2"
-  vars_files:
-    - "keys/private/{{provisioner}}_private.yml"
-  roles:
-    - dockercompose

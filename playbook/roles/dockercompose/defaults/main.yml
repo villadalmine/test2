@@ -1,6 +1,6 @@
 ---
 #parametros de lo que se necesite usar por defecto en docker
 wordpressdbdeploy: True
-publicip: 13.58.227.62
+publicip: 1.1.1.1
 wordpresdbpassword: testing5533
 mysqlrootpassword: testing5533

@@ -8,7 +8,7 @@ stack_name: "demopoc"
 stack_app: "docker"
 demopoc:
   key: RINO_OHIO
-  ami: ami-710e2414
+  ami: ami-e1496384
   zone: us-east-2
   cidrblockvpc: 10.0.0.0/16
   cidrblocksubnet: 10.0.0.0/24
